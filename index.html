@@ -16,11 +16,11 @@
 
     <nav>
         <div class="nav-links">
-            <button onclick="mudarPagina('inicio')" class="btn-menu ativo">Início</button>
-            <button onclick="mudarPagina('sustentabilidade')" class="btn-menu">Sustentabilidade</button>
-            <button onclick="mudarPagina('cadastro')" class="btn-menu">Simulador de Vendas</button>
-            <button onclick="mudarPagina('sobre')" class="btn-menu">Sobre o Projeto</button>
-            <button onclick="mudarPagina('ouvidoria')" class="btn-menu">Ouvidoria e Feedback</button>
+            <button onclick="mudarPagina('inicio', this)" class="btn-menu ativo">Início</button>
+            <button onclick="mudarPagina('sustentabilidade', this)" class="btn-menu">Sustentabilidade</button>
+            <button onclick="mudarPagina('cadastro', this)" class="btn-menu">Simulador de Vendas</button>
+            <button onclick="mudarPagina('sobre', this)" class="btn-menu">Sobre o Projeto</button>
+            <button onclick="mudarPagina('ouvidoria', this)" class="btn-menu">Ouvidoria e Feedback</button>
         </div>
     </nav>
 
@@ -90,6 +90,8 @@
                 <div class="form-simulador">
                     <input type="text" id="nomeAlimento" placeholder="Nome do Alimento (Ex: Cenoura Hidropônica)">
                     <input type="number" id="precoAlimento" step="0.01" min="0" placeholder="Preço Sugerido (Ex: 4.50)">
+                    <input type="text" id="cidadeProdutor" placeholder="Localização (Ex: Londrina)">
+                    <input type="text" id="numeroProdutor" placeholder="Número de Contato (Ex: (43) 12345-6789)">
                     <button onclick="cadastrarProdutoSimulado()">Publicar Oferta</button>
                 </div>
             </section>
@@ -140,7 +142,7 @@
             <p class="aside-text">Deseja falar diretamente com os administradores ou com a coordenação do projeto?</p>
             <ul class="mt-10">
                 <li>📧 <strong>E-mail:</strong> contato@agrolink.com</li>
-                <li>📞 <strong>Telefone:</strong> (11) 1234-5678</li>
+                <li>📞 <strong>Telefone:</strong> (43) 1234-5678</li>
                 <li>⏰ <strong>Horário de Atendimento:</strong> Segunda a Sexta, das 08h às 17h</li>
             </ul>
         </aside>

@@ -1,5 +1,5 @@
 // 1. FUNÇÃO DE NAVEGAÇÃO INTERNA (Sistema de Abas/Páginas Únicas)
-function mudarPagina(idAlvo) {
+function mudarPagina(idAlvo, botaoClicado) {
     const telas = document.querySelectorAll('.pagina-tela');
     telas.forEach(tela => tela.classList.remove('ativa'));
     
@@ -11,15 +11,15 @@ function mudarPagina(idAlvo) {
     const botoes = document.querySelectorAll('.btn-menu');
     botoes.forEach(btn => btn.classList.remove('ativo'));
     
-    if (window.event && window.event.target) {
-        window.event.target.classList.add('ativo');
+    if (botaoClicado) {
+        botaoClicado.classList.add('ativo');
     }
 }
 
 // 2. BANCO DE DADOS LOCAL SIMULADO EM MEMÓRIA
 let produtosLocais = [
-    { nome: "Tomate Caipira (Kg)", valor: "R$ 5,90" },
-    { nome: "Maço de Espinafre", valor: "R$ 3,00" }
+    { nome: "Tomate Caipira (Kg)", valor: "R$ 5,90", cidade: "Londrina", numero: "(43) 99999-1122" },
+    { nome: "Maço de Espinafre", valor: "R$ 3,00", cidade: "Marialva", numero: "(43) 98888-3344" }
 ];
 
 function renderizarListaNaVitrine() {
@@ -30,7 +30,12 @@ function renderizarListaNaVitrine() {
     produtosLocais.forEach(item => {
         const card = document.createElement('div');
         card.className = "card-item";
-        card.innerHTML = `📦 • <strong>${item.nome}</strong><br> ‣ Preço: ${item.valor}`;
+        card.innerHTML = `  
+            📦 • <strong>${item.nome}</strong><br> 
+            ‣ Preço: ${item.valor}<br>
+            ‣ Local: ${item.cidade}<br>
+            ‣ Contato: ${item.numero}`;
+
         boxLista.appendChild(card);
     });
 }
@@ -38,8 +43,11 @@ function renderizarListaNaVitrine() {
 function cadastrarProdutoSimulado() {
     const inputNome = document.getElementById('nomeAlimento');
     const inputPreco = document.getElementById('precoAlimento');
+    const inputCidade = document.getElementById('cidadeProdutor');
+    const inputNumero = document.getElementById('numeroProdutor');
 
-    if (inputNome.value.trim() === "" || inputPreco.value.trim() === "") {
+
+   if (inputNome.value.trim() === "" || inputPreco.value.trim() === "" || inputCidade.value.trim() === "" || inputNumero.value.trim() === "") {
         alert("Preencha todos os campos cadastrais antes de enviar!");
         return;
     }
@@ -58,11 +66,15 @@ function cadastrarProdutoSimulado() {
 
     produtosLocais.push({
         nome: inputNome.value.trim(),
-        valor: precoFormatado
+        valor: precoFormatado,
+        cidade: inputCidade.value.trim(),
+        numero: inputNumero.value.trim()
     });
 
     inputNome.value = "";
     inputPreco.value = "";
+    inputCidade.value = "";
+    inputNumero.value = "";
     renderizarListaNaVitrine();
 }
 
